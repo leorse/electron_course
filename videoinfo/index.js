@@ -1,7 +1,7 @@
 const electron = require('electron');
 
-const {pouet} = electron;
+const {app} = electron;
 
-pouet.on('ready', ()=> {
+app.on('ready', ()=> {
     console.log('Hello world!!');
 });
