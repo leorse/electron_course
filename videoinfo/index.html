@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+    <h1>Titre</h1>
+    <p>Pour l'instant une fenêtre vide.</p>
+    <form>
+        <div>
+            <label>Select a video</label>
+            <input type='file' accept="video/*" />
+        </div>
+        <button type='submit'>get infos</button>
+    </form>
+<script>
+    document.querySelector('form').addEventListener('submit', 
+    (event)=>{
+        //pour pas que le formulaire se soumette tout seul
+      event.preventDefault();  
+      
+      const file = document.querySelector('input').files[0];
+      debugger
+    })
+</script>
+</body>
+</html>
