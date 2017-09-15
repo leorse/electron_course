@@ -12,13 +12,16 @@
         <button type='submit'>get infos</button>
     </form>
 <script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+
     document.querySelector('form').addEventListener('submit', 
     (event)=>{
         //pour pas que le formulaire se soumette tout seul
       event.preventDefault();  
       
-      const file = document.querySelector('input').files[0];
-      debugger
+      const {path} = document.querySelector('input').files[0];
+      ipcRenderer.send('video:submit', path);
     })
 </script>
 </body>
