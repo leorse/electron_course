@@ -11,6 +11,7 @@
         </div>
         <button type='submit'>get infos</button>
     </form>
+    <h1 id="result"></h1>
 <script>
     const electron = require('electron');
     const {ipcRenderer} = electron;
@@ -22,7 +23,14 @@
       
       const {path} = document.querySelector('input').files[0];
       ipcRenderer.send('video:submit', path);
+    });
+
+    ipcRenderer.on('video:response', (event, data)=>{
+        console.log("Taille: "+ data);
+        document.querySelector("#result").innerHTML = "Résultat: "+data;
     })
+
+
 </script>
 </body>
 </html>
