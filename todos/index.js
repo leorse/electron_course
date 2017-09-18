@@ -19,9 +19,21 @@ const menuTemplate = [
             label:'Ouvrir'
         },{
             label:'Quitter',
+            accelerator: (()=>{
+                if(process.platform === 'win32')
+                {
+                    return 'CommandOrControl+Q';
+                }
+                else
+                {
+                    return 'Command+Q';
+                }
+            })(),
             click(){
                 app.quit();
             }
+        },{
+            role:'paste'
         }
     ]
     },
