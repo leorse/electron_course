@@ -4,10 +4,11 @@ const {app, BrowserWindow, Menu} = electron;
 
 let mainWindow;
 let addWindow;
-
+process.env.NODE_ENV = 1;
 app.on('ready', () => {
     mainWindow = new BrowserWindow({});
     mainWindow.loadURL("file://"+__dirname+"/main.html");
+    mainWindow.on('closed', ()=>app.quit());
     
     const mainMenu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(mainMenu);
@@ -52,11 +53,6 @@ const menuTemplate = [
     {
         label: 'Aide',
         submenu: [{
-            label:'Dev',
-            click(){
-                mainWindow.webContents.openDevTools();
-            }
-        },{
             label:'A propos'
         }
     ]
@@ -65,5 +61,24 @@ const menuTemplate = [
 
 if(process.platform === 'darwin')
 {
+    //insère un élément vide en début du tableau menuTemplate
     menuTemplate.unshift({});
+}
+
+if(process.env.NODE_ENV)
+{
+    menuTemplate.push({
+        label: 'DEV',
+        submenu: [{
+            label:'Dev tools',
+            accelerator:'CommandOrControl+Shift+I',
+            click(item, focused){
+                focused.webContents.openDevTools();
+            }
+        },{
+            role:'reload'
+        }
+    ]
+    });
+    debugger;
 }

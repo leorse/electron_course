@@ -6,9 +6,16 @@
         <form>
             <div>
             <label>Entrez le Todo:</label>
-            <input />
+            <input autofocus/>
         </div>
         <button type='submit'>Ajouter</button>
         </form>
     </body>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', (event)=>{
+            event.preventDefault();
+            debugger;
+        });
+    </script>
 </html>
