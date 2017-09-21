@@ -4,5 +4,15 @@
     </head>
     <body>
         <h1>Mon titre de todo</h1>
+        <div id='todo'></div>
     </body>
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+
+        ipcRenderer.on('todo:add', (event, data)=>{
+            document.querySelector('#todo').innerHTML=data;
+        });
+    </script>
     </html>
