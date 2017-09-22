@@ -4,15 +4,27 @@
     </head>
     <body>
         <h1>Mon titre de todo</h1>
+        <ul>
+
+        </ul>
         <div id='todo'></div>
     </body>
     <script>
         const electron = require('electron');
         const {ipcRenderer} = electron;
+        const list= document.querySelector('ul');
 
 
-        ipcRenderer.on('todo:add', (event, data)=>{
-            document.querySelector('#todo').innerHTML=data;
+        ipcRenderer.on('todo:add', (event, todo)=>{
+            //document.querySelector('#todo').innerHTML=todo;
+            const li = document.createElement('li');
+            const text = document.createTextNode(todo);
+            li.appendChild(text);
+            list.appendChild(li);
+        });
+
+        ipcRenderer.on('todo:remove', (event, data)=>{
+            list.innerHTML = '';
         });
     </script>
     </html>

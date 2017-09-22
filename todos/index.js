@@ -31,12 +31,20 @@ function createAddWindow()
     addWindow.loadURL("file://"+__dirname+"/add.html");
 }
 
+function removeAddWindow()
+{
+    mainWindow.webContents.send('todo:remove', null);
+}
+
 const menuTemplate = [
     {
         label: 'File',
         submenu: [{
             label:'Nouveau Todo',
             click() {createAddWindow();}
+        },{
+            label:'Supprimer les Todo',
+            click() {removeAddWindow();}
         },{
             label:'Quitter',
             accelerator: (()=>{
