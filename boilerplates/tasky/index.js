@@ -24,5 +24,5 @@ app.on('ready', () => {
 
 ipcMain.on("update-timer", (event, timeleft) =>
 {
-    tray.setTitle(timeleft);
+    //tray.setTitle(timeleft);
 });
